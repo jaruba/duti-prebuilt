@@ -19,5 +19,9 @@ request
   })
   .pipe(fs.createWriteStream(pkg))
   .on('close', function () {
-    fs.rename(pkg, path.join(binDir, 'duti'));
+
+    if (!fs.existsSync(path.join(binDir, 'duti')))
+      fs.mkdirSync(path.join(binDir, 'duti'));
+
+    fs.rename(pkg, path.join(binDir, 'duti', 'duti'));
   })

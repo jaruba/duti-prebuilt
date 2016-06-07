@@ -10,6 +10,9 @@ if (!fs.existsSync(binDir))
 
 var duti = path.join(binDir, 'duti')
 
+if (fs.existsSync(path.join(duti, 'duti')))
+  duti = path.join(duti, 'duti')
+
 module.exports = function(id, ext) {
   child.exec('"' + duti + '" -s ' + id + ' ' + ext + ' viewer');
 }
