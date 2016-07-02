@@ -2,11 +2,20 @@ var path = require('path')
 var fs = require('fs')
 var child = require('child_process')
 
-var binDir = path.resolve(__dirname, '../..', 'bin');
+var back = '../..';
+var binDir = path.resolve(__dirname, back, 'bin');
 
 // in case of asar, go one level down
-if (!fs.existsSync(binDir))
-  var binDir = path.resolve(__dirname, '../../..', 'bin');
+while (binDir.includes('/app.asar/') || binDir.includes('\\app.asar\\')) {
+    back += '/..'
+    binDir = path.resolve(__dirname, back, 'bin');
+}
+
+// for safety
+if (!fs.existsSync(binDir)) {
+  back += '/..'
+  binDir = path.resolve(__dirname, back, 'bin');
+}
 
 var duti = path.join(binDir, 'duti')
 
