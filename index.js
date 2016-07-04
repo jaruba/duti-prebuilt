@@ -22,6 +22,6 @@ var duti = path.join(binDir, 'duti')
 if (fs.existsSync(path.join(duti, 'duti')))
   duti = path.join(duti, 'duti')
 
-module.exports = function(id, ext) {
-  child.exec('"' + duti + '" -s ' + id + ' ' + ext + ' viewer');
+module.exports = function(id, ext, type) {
+  child.exec('"' + duti + '" -s ' + id + ' ' + ext + (type ? ' ' + type : ''));
 }
