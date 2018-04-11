@@ -17,10 +17,10 @@ if (!fs.existsSync(binDir)) {
   binDir = path.resolve(__dirname, back, 'bin');
 }
 
-var duti = path.join(binDir, 'duti')
+var duti = fs.existsSync(path.join(binDir, 'utid')) ? path.join(binDir, 'utid') : path.join(binDir, 'duti')
 
-if (fs.existsSync(path.join(duti, 'duti')))
-  duti = path.join(duti, 'duti')
+if (fs.existsSync(path.join(duti, 'utid')))
+  duti = path.join(duti, 'utid')
 
 module.exports = function(id, ext, type) {
   child.exec('"' + duti + '" -s ' + id + ' ' + ext + (type ? ' ' + type : ''));
