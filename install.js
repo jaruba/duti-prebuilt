@@ -23,5 +23,9 @@ request
     if (!fs.existsSync(path.join(binDir, 'duti')))
       fs.mkdirSync(path.join(binDir, 'duti'));
 
-    fs.rename(pkg, path.join(binDir, 'duti', 'duti'));
+    var newPath = path.join(binDir, 'duti', 'duti')
+
+    fs.rename(pkg, newPath, function() {
+      fs.chmodSync(newPath, '755')
+    })
   })
