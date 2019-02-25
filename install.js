@@ -26,6 +26,6 @@ request
     var newPath = path.join(binDir, 'duti', 'duti')
 
     fs.rename(pkg, newPath, function() {
-      fs.chmodSync(newPath, '755')
+      fs.chmod(newPath, '755')
     })
   })
